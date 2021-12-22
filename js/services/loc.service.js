@@ -1,4 +1,4 @@
-import { storageService as storage } from './services/storage.service.js';
+import { storageService as storage } from './storage.service.js';
 
 export const locService = {
     getLocs

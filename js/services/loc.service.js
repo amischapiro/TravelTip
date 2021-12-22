@@ -1,7 +1,8 @@
 import { storageService } from './storage.service.js';
 
 export const locService = {
-    getLocs
+    getLocs,
+    newPlace
 }
 
 const locs = storageService.load('Saved places') || [
@@ -17,9 +18,6 @@ function getLocs() {
     });
 }
 
-
-
-
 function newPlace(name, lat, lng) {
     const newPlace = {
         name: name,
@@ -27,9 +25,8 @@ function newPlace(name, lat, lng) {
         lng: lng
     }
 
-    gSavedSpots.push(JSON.stringify(newPlace));
-    // saveToStorage('Saved places', gSavedSpots);
-    // renderSavedSpots();
+    locs.push(newPlace);
+    storageService.save(locs);
 }
 
 

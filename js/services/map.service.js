@@ -2,7 +2,7 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
 }
 
 var gMap;
@@ -18,6 +18,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             })
             console.log('Map!', gMap);
+            clickedLocation();
         })
 }
 
@@ -49,4 +50,14 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+
+function clickedLocation() {
+    gMap.addListener("click", (mapsMouseEvent) => {
+        const lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat);
+        const lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng);
+        const name = prompt('Name of new location?');
+        newPlace(name, lat, lng);
+    });
 }

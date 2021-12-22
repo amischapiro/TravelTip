@@ -34,7 +34,6 @@ function newPlace(name, lat, lng) {
     
     gLocs.push(newPlace);
     storageService.save(PLACES_KEY, gLocs);
-    controller.onGetLocs()
     
 }
 

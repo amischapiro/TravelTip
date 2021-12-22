@@ -1,3 +1,4 @@
+import { locService } from "./loc.service.js";
 
 export const mapService = {
     initMap,
@@ -58,6 +59,6 @@ function clickedLocation() {
         const lat = JSON.stringify(mapsMouseEvent.latLng.toJSON().lat);
         const lng = JSON.stringify(mapsMouseEvent.latLng.toJSON().lng);
         const name = prompt('Name of new location?');
-        newPlace(name, lat, lng);
+        locService.newPlace(name, lat, lng);
     });
 }

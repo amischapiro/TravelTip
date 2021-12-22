@@ -7,7 +7,7 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 
-const key = 'AIzaSyBbaBp9HHef1mbOEbvNZafrht4oJ5onDNI'
+const key = ''
 
 
 function onInit() {

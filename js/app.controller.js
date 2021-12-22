@@ -2,10 +2,6 @@ import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
 
-export const controller = {
-    onGetLocs
-}
-
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
@@ -21,6 +17,10 @@ function onInit() {
     mapService.initMap()
         .then(() => {
             console.log('Map is ready');
+            let url = new URL('https://amischapiro.github.io/TravelTip/')
+            let params = new URLSearchParams(url.search)
+            params.set('home',20)
+            params.toString()
         })
         .catch(() => console.log('Error: cannot init map'));
 

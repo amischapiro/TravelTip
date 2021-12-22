@@ -22,6 +22,7 @@
             <button onclick="onGetUserPos()" class="btn-user-pos">Get My location</button>
             <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
             <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+            <button onclick="onCopyToClipboard()"class="btn-copy">Copy to Clipboard</button>
         </section>
         <section class="info">
             <p>You are at: <span class="user-pos"></span></p>
@@ -29,6 +30,7 @@
         </section>
     </main>
     
+    <div class="modal">Link Copied!</div>
 
     <script type="module" src="js/app.controller.js"></script>
 </body>

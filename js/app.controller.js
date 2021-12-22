@@ -9,6 +9,7 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDelete = onDelete;
 window.onFindAddress = onFindAddress;
+window.onCopyToClipboard = onCopyToClipboard;
 
 function onInit() {
     mapService.initMap()
@@ -71,4 +72,18 @@ function onFindAddress() {
     const address = elInput.value;
     elInput.value = '';
     mapService.geocode({ address });
+}
+
+function onCopyToClipboard() {
+    var dummy = document.createElement('input'), text = window.location.href;
+
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+    document.querySelector('.modal').style.display = 'block';
+    setTimeout(() => {
+        document.querySelector('.modal').style.display = 'none';
+    }, 2000);
 }

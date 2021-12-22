@@ -16,6 +16,9 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
+            let params = new URLSearchParams(document.location.search);
+            if(params.get('lat')) lat = parseFloat(params.get('lat'));
+            if(params.get('lat')) lat = parseFloat(params.get('lat'));
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
@@ -45,7 +48,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = env.SECRET_API_KEY();
+    const API_KEY = env.secretAPIKey();
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;

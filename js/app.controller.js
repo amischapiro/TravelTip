@@ -14,17 +14,6 @@ function onInit() {
     mapService.initMap()
         .then(() => {
             console.log('Map is ready');
-            let url = new URL('https://amischapiro.github.io/TravelTip/')
-            // let params = new URLSearchParams(url.search)
-            let searchParams = url.searchParams
-            searchParams.set('home', 2)
-            url.search = searchParams.toString()
-            // params.set('home',1)
-            // params.toString()
-            let new_url = url.toString()
-            // console.log('params:', params.toString());
-            console.log('new_url:', new_url);
-
         })
         .catch(() => console.log('Error: cannot init map'));
 

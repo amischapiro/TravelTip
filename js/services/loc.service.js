@@ -31,9 +31,13 @@ function newPlace(name, lat, lng) {
 
     }
     
+    const params = new URLSearchParams(location.search);
+    params.set('lat', newPlace.lat);
+    params.set('lng', newPlace.lng);
+    window.history.replaceState({}, '', `${location.pathname}?${params}`);
+
     gLocs.push(newPlace);
-    storageService.save(PLACES_KEY, gLocs);
-    
+    storageService.save(PLACES_KEY, gLocs);  
 }
 
 function deleteLoc(id){

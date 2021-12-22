@@ -1,11 +1,17 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
 
+
+export const controller = {
+    onGetLocs
+}
+
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onDelete = onDelete;
 
 const key = ''
 
@@ -35,8 +41,14 @@ function onAddMarker() {
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
-            console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs)
+            const strHTMLs = locs.map(loc=>{
+                return`<tr><td>ID:${loc.id}</td><td>Name:${loc.name}</td><td>Lat: ${loc.lat}</td><td>Lng:${loc.lng}</td><td>Created at: ${loc.createdAt}</td>
+                <td><button onclick="onPanTo(${loc.lat},${loc.lng})">Go</button><button onclick="onDelete('${loc.id}')">Delete</button>
+                </tr>`
+            })
+            console.log('locs:', strHTMLs.join(''));
+            
+            document.querySelector('tbody').innerHTML = strHTMLs.join('')
         })
 }
 
@@ -52,7 +64,12 @@ function onGetUserPos() {
             console.log('err!!!', err);
         })
 }
-function onPanTo() {
+function onPanTo(lat=35.6895,lng=139.6917) {
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+    mapService.panTo(lat,lng);
+}
+
+function onDelete(id){
+        locService.deleteLoc(id)
+        onGetLocs()
 }

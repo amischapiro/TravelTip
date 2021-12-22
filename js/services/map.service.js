@@ -4,9 +4,11 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
+    geocode
 }
 
-var gMap;
+let gMap;
+let gGeocoder;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
@@ -20,6 +22,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             })
             console.log('Map!', gMap);
             clickedLocation();
+            gGeocoder = new google.maps.Geocoder();
         })
 }
 
@@ -41,7 +44,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyBbaBp9HHef1mbOEbvNZafrht4oJ5onDNI';
+    const API_KEY = 'AIzaSyBdfQp3owBv9_H9Y-sFmgE7ssIs5tIR3oU';
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -61,4 +64,28 @@ function clickedLocation() {
         const name = prompt('Name of new location?');
         locService.newPlace(name, lat, lng);
     });
+}
+
+function clear() {
+    marker.setMap(null);
+    responseDiv.style.display = "none";
+}
+
+function geocode(request) {
+    // clear();
+    gGeocoder
+        .geocode(request)
+        .then(result => {
+            const { results } = result;
+
+            gMap.setCenter(results[0].geometry.location);
+            // marker.setPosition(results[0].geometry.location);
+            // marker.setMap(gMap);
+            // responseDiv.style.display = "block";
+            // response.innerText = JSON.stringify(result, null, 2);
+            return results;
+        })
+        .catch(err => {
+            alert("Geocode was not successful for the following reason: " + err);
+        });
 }

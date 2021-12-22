@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* HEADER */
+.main-header {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.main-header h1 {
+    margin: 0.5rem;
+    font-size: 3rem;
+}
+
+.main-header div {
+    padding-top: 2.8rem;
+    margin: 0;
+    text-align: center;
+}
+
+/* ACTIONS */
+.actions-section button {
+    height: 2.5rem;
+    width: 15rem;
+    background-color: rgb(102, 102, 102);
+    color:whitesmoke;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.15rem;
+}
+
+.actions-section button:hover {
+    background-color: rgb(133, 132, 132);
+    transition: 0.2s;
+}
+
+/* INFO */
+.info {
+    width: 100vw;
+}
+
+table {
+    width: calc(100vw - 2rem);
+    border: 1px solid rgb(216, 215, 215);
+    border-radius: 0.313rem;
+    text-align: center;
+    border-spacing: 0;
+}
+
+tr:nth-child(even) {
+    background-color: #e4e4e48e;
+}
+
+tr:nth-child(odd) {
+    background-color: inherit;
+}
+
+td {
+    margin: 0;
+    border:none;
+    border-color: #e4e4e48e;
+}
+
+td button {
+    border: 2px solid rgb(216, 225, 253);
+    background-color: rgb(101, 137, 253);
+    padding: 0.5rem 1rem;
+    color: rgb(243, 243, 243);
+    font-weight: 600;
+    letter-spacing: 0.06rem;
+    border-radius: 0.213rem;
+}
+
+td button:hover {
+    border: 2px solid rgb(196, 210, 253);
+    background-color: rgb(113, 146, 255);
+    transition: 0.2s;
+}
+
+td button:not(:last-child) {
+    margin-inline-end: 0.5rem;
+}
+
+/* HELPERS */
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+.space-around {
+    justify-content: space-around;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}

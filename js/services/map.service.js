@@ -1,4 +1,5 @@
 import { locService } from "./loc.service.js";
+import { env } from "../env.js";
 
 export const mapService = {
     initMap,
@@ -44,7 +45,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyBdfQp3owBv9_H9Y-sFmgE7ssIs5tIR3oU';
+    const API_KEY = env.SECRET_API_KEY();
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -66,23 +67,12 @@ function clickedLocation() {
     });
 }
 
-function clear() {
-    marker.setMap(null);
-    responseDiv.style.display = "none";
-}
-
 function geocode(request) {
-    // clear();
     gGeocoder
         .geocode(request)
         .then(result => {
             const { results } = result;
-
             gMap.setCenter(results[0].geometry.location);
-            // marker.setPosition(results[0].geometry.location);
-            // marker.setMap(gMap);
-            // responseDiv.style.display = "block";
-            // response.innerText = JSON.stringify(result, null, 2);
             return results;
         })
         .catch(err => {

@@ -12,6 +12,7 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onDelete = onDelete;
+window.onFindAddress = onFindAddress;
 
 const key = ''
 
@@ -72,4 +73,11 @@ function onPanTo(lat=35.6895,lng=139.6917) {
 function onDelete(id){
         locService.deleteLoc(id)
         onGetLocs()
+}
+
+function onFindAddress() {
+    const elInput = document.querySelector('input');
+    const address = elInput.value;
+    elInput.value = '';
+    mapService.geocode({address});
 }

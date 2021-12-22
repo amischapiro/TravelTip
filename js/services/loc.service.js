@@ -1,9 +1,10 @@
+import { storageService as storage } from './services/storage.service.js';
+
 export const locService = {
     getLocs
 }
 
-
-const locs = loadFromStorage('Saved places') || [
+const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]

@@ -3,7 +3,7 @@ export const locService = {
 }
 
 
-const locs = [
+const locs = loadFromStorage('Saved places') || [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
@@ -17,3 +17,33 @@ function getLocs() {
 }
 
 
+// function initMap() {
+//     map = new google.maps.Map(document.getElementById('map'), {
+//         center: { lat: 29.557495050690875, lng: 34.95405618516751 },
+//         zoom: 12,
+//     });
+//     currLocation();
+//     clickedLocation();
+//     renderSavedSpots();
+// }
+
+// function newPlace(name, lat, lng) {
+//     const newPlace = {
+//         id: getId(),
+//         lat: lat,
+//         lng: lng,
+//         name: name
+//     }
+
+//     gSavedSpots.push(JSON.stringify(newPlace));
+//     saveToStorage('Saved places', gSavedSpots);
+//     renderSavedSpots();
+// }
+
+
+// function getPlaces() {
+//     const spots = loadFromStorage('Saved places').map(spot => {
+//         return JSON.parse(spot);
+//     });
+//     return spots;
+// }
